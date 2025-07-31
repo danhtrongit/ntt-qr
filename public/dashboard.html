@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ - Hệ Thống Mã Khuyến Mãi QR</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/dashboard" class="nav-brand">🎯 QR Promotion</a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="/dashboard" class="nav-link active">Trang Chủ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/validate" class="nav-link">Kiểm Tra Mã</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/change-password" class="nav-link">Đổi Mật Khẩu</a>
+                </li>
+            </ul>
+            <div class="nav-user">
+                <span class="user-info">Xin chào, <span id="username">Admin</span></span>
+                <button class="logout-btn" id="logoutBtn">Đăng Xuất</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>📊 Trang Chủ</h1>
+            <p>Thống kê và tạo mã khuyến mãi</p>
+        </header>
+
+        <main>
+            <!-- Statistics Section -->
+            <section class="card">
+                <h2>📊 Thống Kê Tổng Quan</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalCodes">0</div>
+                        <div class="stat-label">Tổng mã đã tạo</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="usedCodes">0</div>
+                        <div class="stat-label">Mã đã sử dụng</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="unusedCodes">0</div>
+                        <div class="stat-label">Mã chưa sử dụng</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="usageRate">0%</div>
+                        <div class="stat-label">Tỷ lệ sử dụng</div>
+                    </div>
+                </div>
+                <button id="refreshStatsBtn" class="btn btn-outline">Cập nhật thống kê</button>
+            </section>
+
+            <!-- Code Generation Section -->
+            <section class="card">
+                <h2>📱 Tạo Mã Khuyến Mãi</h2>
+                <p>Nhấn nút bên dưới để tạo mã khuyến mãi mới cho khách hàng</p>
+                <button id="generateBtn" class="btn btn-primary">
+                    <span class="btn-text">Tạo Mã Khuyến Mãi</span>
+                    <span class="loading" style="display: none;">Đang tạo...</span>
+                </button>
+                
+                <div id="codeResult" class="result-section" style="display: none;">
+                    <div class="code-display">
+                        <h3>Mã khuyến mãi đã tạo:</h3>
+                        <div class="code-value" id="generatedCode"></div>
+                    </div>
+                    
+                    <div class="qr-display">
+                        <h3>QR Code cho khách hàng:</h3>
+                        <div class="qr-container">
+                            <img id="qrCodeImage" src="" alt="QR Code" />
+                        </div>
+                        <p class="qr-instruction">Khách hàng có thể quét mã QR này bằng điện thoại</p>
+                        <div class="qr-actions">
+                            <button id="printQRBtn" class="btn btn-secondary">In QR Code</button>
+                            <button id="downloadQRBtn" class="btn btn-outline">Tải về</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Codes Section -->
+            <section class="card">
+                <h2>📋 Mã Gần Đây</h2>
+                <div id="recentCodes" class="recent-codes">
+                    <p class="loading-text">Đang tải...</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast" style="display: none;">
+        <div class="toast-content">
+            <span class="toast-message"></span>
+            <button class="toast-close">&times;</button>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

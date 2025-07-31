@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm Tra Mã - Hệ Thống Mã Khuyến Mãi QR</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .scanner-section {
+            background: #f7fafc;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .scanner-toggle {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .toggle-btn {
+            padding: 12px 24px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-btn.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .scanner-container {
+            max-width: 400px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        #qr-reader {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .scanner-status {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        
+        .scanner-status.info {
+            background: #bee3f8;
+            color: #2c5282;
+        }
+        
+        .scanner-status.error {
+            background: #fed7d7;
+            color: #742a2a;
+        }
+        
+        .manual-input-section {
+            display: none;
+        }
+        
+        .validation-history {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .history-item {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .history-item.success {
+            border-left-color: #48bb78;
+        }
+        
+        .history-item.error {
+            border-left-color: #f56565;
+        }
+        
+        .history-time {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-bottom: 5px;
+        }
+        
+        .history-code {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .history-message {
+            color: #4a5568;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/dashboard" class="nav-brand">🎯 QR Promotion</a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="/dashboard" class="nav-link">Trang Chủ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/validate" class="nav-link active">Kiểm Tra Mã</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/change-password" class="nav-link">Đổi Mật Khẩu</a>
+                </li>
+            </ul>
+            <div class="nav-user">
+                <span class="user-info">Xin chào, <span id="username">Admin</span></span>
+                <button class="logout-btn" id="logoutBtn">Đăng Xuất</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>✅ Kiểm Tra Mã Khuyến Mãi</h1>
+            <p>Quét QR code hoặc nhập mã thủ công để kiểm tra</p>
+        </header>
+
+        <main>
+            <!-- Scanner/Input Toggle -->
+            <section class="scanner-section">
+                <div class="scanner-toggle">
+                    <button class="toggle-btn active" id="scannerToggle">📱 Quét QR Code</button>
+                    <button class="toggle-btn" id="manualToggle">⌨️ Nhập Thủ Công</button>
+                </div>
+                
+                <!-- QR Scanner -->
+                <div id="scannerSection" class="scanner-container">
+                    <div id="qr-reader"></div>
+                    <div id="scannerStatus" class="scanner-status info">
+                        Nhấn "Bắt đầu quét" để kích hoạt camera
+                    </div>
+                    <button id="startScanBtn" class="btn btn-primary" style="margin-top: 15px;">
+                        Bắt đầu quét
+                    </button>
+                    <button id="stopScanBtn" class="btn btn-secondary" style="margin-top: 15px; display: none;">
+                        Dừng quét
+                    </button>
+                </div>
+                
+                <!-- Manual Input -->
+                <div id="manualSection" class="manual-input-section">
+                    <div class="input-group">
+                        <input 
+                            type="text" 
+                            id="codeInput" 
+                            placeholder="Nhập mã khuyến mãi (8 ký tự)"
+                            maxlength="8"
+                            autocomplete="off"
+                        />
+                        <button id="validateBtn" class="btn btn-secondary">
+                            <span class="btn-text">Kiểm Tra</span>
+                            <span class="loading" style="display: none;">Đang kiểm tra...</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Validation Result -->
+            <section class="card">
+                <h2>📋 Kết Quả Kiểm Tra</h2>
+                <div id="validationResult" class="result-section" style="display: none;">
+                    <div class="message" id="validationMessage"></div>
+                    <div id="codeDetails" class="code-details" style="display: none;"></div>
+                </div>
+                <div id="noResult" class="result-section">
+                    <p style="text-align: center; color: #718096; font-style: italic;">
+                        Chưa có kết quả kiểm tra nào
+                    </p>
+                </div>
+            </section>
+
+            <!-- Validation History -->
+            <section class="card">
+                <h2>📊 Lịch Sử Kiểm Tra</h2>
+                <div id="validationHistory" class="validation-history">
+                    <p style="text-align: center; color: #718096; font-style: italic;">
+                        Chưa có lịch sử kiểm tra
+                    </p>
+                </div>
+                <button id="clearHistoryBtn" class="btn btn-outline" style="margin-top: 15px;">
+                    Xóa lịch sử
+                </button>
+            </section>
+        </main>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast" style="display: none;">
+        <div class="toast-content">
+            <span class="toast-message"></span>
+            <button class="toast-close">&times;</button>
+        </div>
+    </div>
+
+    <!-- QR Code Scanner Library -->
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <script src="auth.js"></script>
+    <script src="validate.js"></script>
+</body>
+</html>
