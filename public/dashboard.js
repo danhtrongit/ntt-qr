@@ -50,38 +50,35 @@ class Dashboard {
     async generateCode() {
         setButtonLoading(this.elements.generateBtn, true);
         hideResult(this.elements.codeResult);
-        
+
         try {
-            const response = await authManager.apiCall('/api/generate-code', {
+            const response = await safeApiCall('/api/generate-code', {
                 method: 'POST'
             });
-            
+
             const data = await response.json();
-            
+
             if (data.success) {
                 // Display the generated code
                 this.elements.generatedCode.textContent = data.data.code;
-                
+
                 // Generate and display QR code
                 await this.generateQRCode(data.data.code);
-                
+
                 // Show result section
                 showResult(this.elements.codeResult);
-                
+
                 // Update statistics and recent codes
                 this.loadStatistics();
                 this.loadRecentCodes();
-                
+
                 // Show success toast
-                authManager.showToast(data.message, 'success');
+                safeShowToast(data.message, 'success');
             } else {
-                authManager.showToast(data.message, 'error');
+                safeShowToast(data.message, 'error');
             }
         } catch (error) {
-            if (error.message !== 'Unauthorized') {
-                console.error('Error generating code:', error);
-                authManager.showToast('Lỗi kết nối. Vui lòng thử lại.', 'error');
-            }
+            handleError(error, 'Lỗi khi tạo mã khuyến mãi');
         } finally {
             setButtonLoading(this.elements.generateBtn, false);
         }
@@ -110,16 +107,16 @@ class Dashboard {
 
     async loadStatistics() {
         try {
-            const response = await authManager.apiCall('/api/codes');
+            const response = await safeApiCall('/api/codes');
             const data = await response.json();
-            
+
             if (data.success) {
                 const codes = data.data;
                 const total = codes.length;
                 const used = codes.filter(code => code.is_used).length;
                 const unused = total - used;
                 const usageRate = total > 0 ? Math.round((used / total) * 100) : 0;
-                
+
                 // Update statistics display
                 this.elements.totalCodes.textContent = total;
                 this.elements.usedCodes.textContent = used;
@@ -127,9 +124,7 @@ class Dashboard {
                 this.elements.usageRate.textContent = `${usageRate}%`;
             }
         } catch (error) {
-            if (error.message !== 'Unauthorized') {
-                console.error('Error loading statistics:', error);
-            }
+            handleError(error, 'Lỗi khi tải thống kê');
         }
     }
 
@@ -152,23 +147,35 @@ class Dashboard {
 
     displayRecentCodes(codes) {
         if (codes.length === 0) {
-            this.elements.recentCodes.innerHTML = '<p style="color: #718096; font-style: italic;">Chưa có mã nào được tạo</p>';
+            this.elements.recentCodes.innerHTML = `
+                <div class="flex items-center justify-center py-8 text-muted-foreground">
+                    <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
+                    </svg>
+                    Chưa có mã nào được tạo
+                </div>
+            `;
             return;
         }
 
         const codesHTML = codes.map(code => {
             const createdAt = formatDate(code.created_at);
             const usedAt = code.used_at ? formatDate(code.used_at) : null;
-            const statusClass = code.is_used ? 'error' : 'success';
-            const statusText = code.is_used ? 'Đã sử dụng' : 'Chưa sử dụng';
-            
+            const statusBadge = code.is_used
+                ? '<span class="badge badge-destructive">Đã sử dụng</span>'
+                : '<span class="badge badge-secondary">Chưa sử dụng</span>';
+
             return `
-                <div class="history-item ${statusClass}">
-                    <div class="history-time">${createdAt}</div>
-                    <div class="history-code">${code.code}</div>
-                    <div class="history-message">
-                        Trạng thái: ${statusText}
-                        ${usedAt ? `<br>Sử dụng lúc: ${usedAt}` : ''}
+                <div class="flex items-center justify-between p-3 border rounded-lg bg-card hover:bg-accent/50 transition-colors">
+                    <div class="space-y-1">
+                        <div class="font-mono font-semibold">${code.code}</div>
+                        <div class="text-sm text-muted-foreground">
+                            Tạo lúc: ${createdAt}
+                            ${usedAt ? `<br>Sử dụng lúc: ${usedAt}` : ''}
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-end gap-2">
+                        ${statusBadge}
                     </div>
                 </div>
             `;
@@ -255,16 +262,6 @@ class Dashboard {
 }
 
 // Initialize dashboard when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Wait for auth manager to be ready with retry mechanism
-    function initDashboard() {
-        if (window.authManager) {
-            new Dashboard();
-        } else {
-            setTimeout(initDashboard, 50);
-        }
-    }
-
-    // Start initialization after a short delay
-    setTimeout(initDashboard, 100);
+initializePage(() => {
+    new Dashboard();
 });

@@ -4,196 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng Nhập - Hệ Thống Mã Khuyến Mãi QR</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        .login-container {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        .login-card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-        }
-        
-        .login-header {
-            margin-bottom: 30px;
-        }
-        
-        .login-header h1 {
-            color: #4a5568;
-            margin-bottom: 10px;
-            font-size: 2rem;
-        }
-        
-        .login-header p {
-            color: #718096;
-            font-size: 1rem;
-        }
-        
-        .login-form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .form-group {
-            text-align: left;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #4a5568;
-            font-weight: 600;
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-            box-sizing: border-box;
-        }
-        
-        .form-group input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-        
-        .login-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-        }
-        
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-        }
-        
-        .login-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        .error-message {
-            background: #fed7d7;
-            color: #742a2a;
-            border: 1px solid #fc8181;
-            padding: 12px;
-            border-radius: 8px;
-            margin-top: 15px;
-            display: none;
-        }
-        
-        .success-message {
-            background: #c6f6d5;
-            color: #22543d;
-            border: 1px solid #9ae6b4;
-            padding: 12px;
-            border-radius: 8px;
-            margin-top: 15px;
-            display: none;
-        }
-        
-        .loading {
-            display: none;
-        }
-        
-        .login-btn:disabled .btn-text {
-            display: none;
-        }
-        
-        .login-btn:disabled .loading {
-            display: inline;
-        }
-        
-        .system-info {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #e2e8f0;
-            color: #718096;
-            font-size: 0.9rem;
-        }
-        
-        @media (max-width: 480px) {
-            .login-card {
-                margin: 20px;
-                padding: 30px 20px;
-            }
-            
-            .login-header h1 {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="shadcn-components.css">
+
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-card">
-            <div class="login-header">
-                <h1>🔐 Đăng Nhập</h1>
-                <p>Hệ Thống Mã Khuyến Mãi QR</p>
+    <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8">
+            <!-- Header -->
+            <div class="text-center">
+                <div class="mx-auto h-16 w-16 flex items-center justify-center rounded-full bg-primary/10 mb-4">
+                    <svg class="h-8 w-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900">Đăng nhập</h2>
+                <p class="mt-2 text-sm text-muted-foreground">
+                    Hệ thống quản lý mã khuyến mãi QR
+                </p>
             </div>
-            
-            <form class="login-form" id="loginForm">
-                <div class="form-group">
-                    <label for="username">Tên đăng nhập:</label>
-                    <input 
-                        type="text" 
-                        id="username" 
-                        name="username" 
-                        required 
-                        autocomplete="username"
-                        placeholder="Nhập tên đăng nhập"
-                    />
+
+            <!-- Login Form Card -->
+            <div class="card">
+                <div class="card-content">
+                    <form class="space-y-6" id="loginForm">
+                        <div class="space-y-4">
+                            <div class="space-y-2">
+                                <label for="username" class="label">Tên đăng nhập</label>
+                                <input
+                                    id="username"
+                                    name="username"
+                                    type="text"
+                                    autocomplete="username"
+                                    required
+                                    class="input"
+                                    placeholder="Nhập tên đăng nhập"
+                                />
+                            </div>
+
+                            <div class="space-y-2">
+                                <label for="password" class="label">Mật khẩu</label>
+                                <input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    autocomplete="current-password"
+                                    required
+                                    class="input"
+                                    placeholder="Nhập mật khẩu"
+                                />
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-default w-full" id="loginBtn">
+                            <span class="btn-text">Đăng nhập</span>
+                            <span class="loading hidden">
+                                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Đang đăng nhập...
+                            </span>
+                        </button>
+
+                        <!-- Error/Success Messages -->
+                        <div id="errorMessage" class="alert alert-destructive hidden">
+                            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="15" y1="9" x2="9" y2="15"/>
+                                <line x1="9" y1="9" x2="15" y2="15"/>
+                            </svg>
+                            <div class="error-text"></div>
+                        </div>
+
+                        <div id="successMessage" class="alert alert-default hidden bg-green-50 text-green-800 border-green-200">
+                            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20,6 9,17 4,12"/>
+                            </svg>
+                            <div class="success-text"></div>
+                        </div>
+                    </form>
                 </div>
-                
-                <div class="form-group">
-                    <label for="password">Mật khẩu:</label>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        name="password" 
-                        required 
-                        autocomplete="current-password"
-                        placeholder="Nhập mật khẩu"
-                    />
+            </div>
+
+            <!-- System Info -->
+            <div class="text-center">
+                <div class="text-sm text-muted-foreground space-y-1">
+                    <p class="font-medium">Thông tin hệ thống</p>
+                    <p>Dành cho quản trị viên</p>
+                    <p>Phiên bản 1.0.0</p>
                 </div>
-                
-                <button type="submit" class="login-btn" id="loginBtn">
-                    <span class="btn-text">Đăng Nhập</span>
-                    <span class="loading">Đang đăng nhập...</span>
-                </button>
-                
-                <div class="error-message" id="errorMessage"></div>
-                <div class="success-message" id="successMessage"></div>
-            </form>
-            
-            <div class="system-info">
-                <p><strong>Thông tin hệ thống:</strong></p>
-                <p>Dành cho quản trị viên</p>
-                <p>Phiên bản: 1.0.0</p>
             </div>
         </div>
     </div>
@@ -283,31 +183,35 @@
             loginBtn.disabled = loading;
             const btnText = loginBtn.querySelector('.btn-text');
             const loadingText = loginBtn.querySelector('.loading');
-            
+
             if (loading) {
-                btnText.style.display = 'none';
-                loadingText.style.display = 'inline';
+                btnText.classList.add('hidden');
+                loadingText.classList.remove('hidden');
+                loginBtn.classList.add('opacity-50');
             } else {
-                btnText.style.display = 'inline';
-                loadingText.style.display = 'none';
+                btnText.classList.remove('hidden');
+                loadingText.classList.add('hidden');
+                loginBtn.classList.remove('opacity-50');
             }
         }
 
         function showError(message) {
-            errorMessage.textContent = message;
-            errorMessage.style.display = 'block';
-            successMessage.style.display = 'none';
+            const errorText = errorMessage.querySelector('.error-text');
+            errorText.textContent = message;
+            errorMessage.classList.remove('hidden');
+            successMessage.classList.add('hidden');
         }
 
         function showSuccess(message) {
-            successMessage.textContent = message;
-            successMessage.style.display = 'block';
-            errorMessage.style.display = 'none';
+            const successText = successMessage.querySelector('.success-text');
+            successText.textContent = message;
+            successMessage.classList.remove('hidden');
+            errorMessage.classList.add('hidden');
         }
 
         function hideMessages() {
-            errorMessage.style.display = 'none';
-            successMessage.style.display = 'none';
+            errorMessage.classList.add('hidden');
+            successMessage.classList.add('hidden');
         }
     </script>
 </body>

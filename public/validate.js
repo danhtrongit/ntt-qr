@@ -58,17 +58,21 @@ class ValidationPage {
     }
 
     showScanner() {
-        this.elements.scannerToggle.classList.add('active');
-        this.elements.manualToggle.classList.remove('active');
-        this.elements.scannerSection.style.display = 'block';
-        this.elements.manualSection.style.display = 'none';
+        this.elements.scannerSection.classList.remove('hidden');
+        this.elements.manualSection.classList.add('hidden');
+        this.elements.scannerToggle.classList.remove('btn-outline');
+        this.elements.scannerToggle.classList.add('btn-default');
+        this.elements.manualToggle.classList.remove('btn-default');
+        this.elements.manualToggle.classList.add('btn-outline');
     }
 
     showManualInput() {
-        this.elements.scannerToggle.classList.remove('active');
-        this.elements.manualToggle.classList.add('active');
-        this.elements.scannerSection.style.display = 'none';
-        this.elements.manualSection.style.display = 'block';
+        this.elements.scannerSection.classList.add('hidden');
+        this.elements.manualSection.classList.remove('hidden');
+        this.elements.scannerToggle.classList.remove('btn-default');
+        this.elements.scannerToggle.classList.add('btn-outline');
+        this.elements.manualToggle.classList.remove('btn-outline');
+        this.elements.manualToggle.classList.add('btn-default');
         
         // Stop scanning if active
         if (this.isScanning) {

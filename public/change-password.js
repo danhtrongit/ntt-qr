@@ -128,18 +128,19 @@ class ChangePasswordPage {
 
     updatePasswordStrength() {
         const password = this.elements.newPassword.value;
-        
+
         if (!password) {
-            this.elements.passwordStrength.style.display = 'none';
+            this.elements.passwordStrength.classList.add('hidden');
             return;
         }
-        
-        this.elements.passwordStrength.style.display = 'block';
-        
+
+        this.elements.passwordStrength.classList.remove('hidden');
+
         const strength = this.calculatePasswordStrength(password);
-        
+
         // Update strength bar
-        this.elements.strengthFill.className = `strength-fill strength-${strength.level}`;
+        this.elements.strengthFill.style.width = strength.width;
+        this.elements.strengthFill.style.backgroundColor = strength.color;
         this.elements.strengthText.textContent = strength.text;
         this.elements.strengthText.style.color = strength.color;
     }
@@ -147,27 +148,27 @@ class ChangePasswordPage {
     calculatePasswordStrength(password) {
         let score = 0;
         let feedback = [];
-        
+
         // Length check
         if (password.length >= 8) score += 2;
         else if (password.length >= 6) score += 1;
         else feedback.push('Quá ngắn');
-        
+
         // Character variety checks
         if (/[a-z]/.test(password)) score += 1;
         if (/[A-Z]/.test(password)) score += 1;
         if (/[0-9]/.test(password)) score += 1;
         if (/[^A-Za-z0-9]/.test(password)) score += 1;
-        
+
         // Determine strength level
         if (score < 3) {
-            return { level: 'weak', text: 'Yếu', color: '#f56565' };
+            return { level: 'weak', text: 'Yếu', color: '#ef4444', width: '25%' };
         } else if (score < 4) {
-            return { level: 'fair', text: 'Trung bình', color: '#ed8936' };
+            return { level: 'fair', text: 'Trung bình', color: '#f97316', width: '50%' };
         } else if (score < 6) {
-            return { level: 'good', text: 'Tốt', color: '#ecc94b' };
+            return { level: 'good', text: 'Tốt', color: '#eab308', width: '75%' };
         } else {
-            return { level: 'strong', text: 'Mạnh', color: '#48bb78' };
+            return { level: 'strong', text: 'Mạnh', color: '#22c55e', width: '100%' };
         }
     }
 
@@ -199,19 +200,20 @@ class ChangePasswordPage {
     }
 
     showError(message) {
-        this.elements.errorMessage.textContent = message;
-        this.elements.errorMessage.style.display = 'block';
+        const errorText = this.elements.errorMessage.querySelector('.error-text');
+        errorText.textContent = message;
+        this.elements.errorMessage.classList.remove('hidden');
         this.elements.errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
     hideError() {
-        this.elements.errorMessage.style.display = 'none';
+        this.elements.errorMessage.classList.add('hidden');
     }
 
     showSuccess() {
-        this.elements.passwordForm.style.display = 'none';
-        this.elements.successSection.style.display = 'block';
-        
+        this.elements.passwordForm.classList.add('hidden');
+        this.elements.successSection.classList.remove('hidden');
+
         // Scroll to success section
         this.elements.successSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
