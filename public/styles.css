@@ -414,40 +414,81 @@ footer {
     opacity: 0.8;
 }
 
+/* QR Actions */
+.qr-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Recent Codes */
+.recent-codes {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-user {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .container {
         padding: 15px;
     }
-    
+
     header h1 {
         font-size: 2rem;
     }
-    
+
     .card {
         padding: 20px;
     }
-    
+
     .input-group {
         flex-direction: column;
     }
-    
+
     .btn {
         width: 100%;
     }
-    
+
     .code-value {
         font-size: 1.5rem;
         letter-spacing: 2px;
     }
-    
+
     .stats-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .toast {
         right: 15px;
         left: 15px;
         top: 15px;
+    }
+
+    .qr-actions {
+        flex-direction: column;
     }
 }

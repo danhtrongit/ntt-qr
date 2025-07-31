@@ -12,7 +12,10 @@ const PORT = process.env.PORT || 3008
 const db = new Database();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: true,
+    credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

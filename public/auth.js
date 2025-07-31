@@ -13,7 +13,9 @@ class AuthManager {
 
     async checkAuthStatus() {
         try {
-            const response = await fetch('/api/auth-status');
+            const response = await fetch('/api/auth-status', {
+                credentials: 'include'
+            });
             const data = await response.json();
             
             if (data.authenticated) {
@@ -52,7 +54,8 @@ class AuthManager {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
-                }
+                },
+                credentials: 'include'
             });
 
             const data = await response.json();
@@ -108,7 +111,8 @@ class AuthManager {
             headers: {
                 'Content-Type': 'application/json',
                 ...options.headers
-            }
+            },
+            credentials: 'include'
         };
 
         const response = await fetch(url, { ...defaultOptions, ...options });
@@ -186,7 +190,10 @@ function formatDate(dateString) {
 let authManager;
 document.addEventListener('DOMContentLoaded', function() {
     authManager = new AuthManager();
-    
+
+    // Export for use in other scripts after initialization
+    window.authManager = authManager;
+
     // Set up toast close functionality
     document.addEventListener('click', function(e) {
         if (e.target.classList.contains('toast-close')) {
@@ -195,8 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Export for use in other scripts
-window.authManager = authManager;
+// Export utility functions immediately
 window.setButtonLoading = setButtonLoading;
 window.showResult = showResult;
 window.hideResult = hideResult;
