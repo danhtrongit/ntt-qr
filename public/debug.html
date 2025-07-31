@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug - QR Promotion System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .debug-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .debug-section h3 {
+            color: #333;
+            margin-top: 0;
+        }
+        .btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .result {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            white-space: pre-wrap;
+        }
+        .error {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        .success {
+            background: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 QR Promotion System Debug</h1>
+    
+    <div class="debug-section">
+        <h3>1. API Health Check</h3>
+        <button class="btn" onclick="testHealth()">Test Health API</button>
+        <div id="healthResult" class="result" style="display: none;"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h3>2. Authentication Status</h3>
+        <button class="btn" onclick="testAuthStatus()">Check Auth Status</button>
+        <div id="authResult" class="result" style="display: none;"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h3>3. Login Test</h3>
+        <input type="text" id="username" placeholder="Username" value="admin">
+        <input type="password" id="password" placeholder="Password" value="Thien.28">
+        <button class="btn" onclick="testLogin()">Test Login</button>
+        <div id="loginResult" class="result" style="display: none;"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h3>4. Generate Code Test</h3>
+        <button class="btn" onclick="testGenerateCode()">Test Generate Code</button>
+        <div id="generateResult" class="result" style="display: none;"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h3>5. JavaScript Console Errors</h3>
+        <button class="btn" onclick="checkConsoleErrors()">Check Console</button>
+        <div id="consoleResult" class="result" style="display: none;"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h3>6. Navigation Links</h3>
+        <a href="/login" class="btn">Go to Login</a>
+        <a href="/dashboard" class="btn">Go to Dashboard</a>
+        <a href="/validate" class="btn">Go to Validate</a>
+        <a href="/change-password" class="btn">Go to Change Password</a>
+    </div>
+
+    <script>
+        // Store console errors
+        let consoleErrors = [];
+        const originalConsoleError = console.error;
+        console.error = function(...args) {
+            consoleErrors.push(args.join(' '));
+            originalConsoleError.apply(console, args);
+        };
+
+        async function testHealth() {
+            const resultDiv = document.getElementById('healthResult');
+            resultDiv.style.display = 'block';
+            resultDiv.textContent = 'Testing...';
+            
+            try {
+                const response = await fetch('/api/health', {
+                    credentials: 'include'
+                });
+                const data = await response.json();
+                
+                resultDiv.className = 'result success';
+                resultDiv.textContent = `✅ Success: ${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ Error: ${error.message}`;
+            }
+        }
+
+        async function testAuthStatus() {
+            const resultDiv = document.getElementById('authResult');
+            resultDiv.style.display = 'block';
+            resultDiv.textContent = 'Testing...';
+            
+            try {
+                const response = await fetch('/api/auth-status', {
+                    credentials: 'include'
+                });
+                const data = await response.json();
+                
+                resultDiv.className = 'result success';
+                resultDiv.textContent = `✅ Success: ${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ Error: ${error.message}`;
+            }
+        }
+
+        async function testLogin() {
+            const resultDiv = document.getElementById('loginResult');
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            resultDiv.style.display = 'block';
+            resultDiv.textContent = 'Testing login...';
+            
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({ username, password })
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    resultDiv.className = 'result success';
+                    resultDiv.textContent = `✅ Login Success: ${JSON.stringify(data, null, 2)}`;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.textContent = `❌ Login Failed: ${JSON.stringify(data, null, 2)}`;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ Error: ${error.message}`;
+            }
+        }
+
+        async function testGenerateCode() {
+            const resultDiv = document.getElementById('generateResult');
+            resultDiv.style.display = 'block';
+            resultDiv.textContent = 'Testing generate code...';
+            
+            try {
+                const response = await fetch('/api/generate-code', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include'
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    resultDiv.className = 'result success';
+                    resultDiv.textContent = `✅ Generate Success: ${JSON.stringify(data, null, 2)}`;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.textContent = `❌ Generate Failed: ${JSON.stringify(data, null, 2)}`;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ Error: ${error.message}`;
+            }
+        }
+
+        function checkConsoleErrors() {
+            const resultDiv = document.getElementById('consoleResult');
+            resultDiv.style.display = 'block';
+            
+            if (consoleErrors.length === 0) {
+                resultDiv.className = 'result success';
+                resultDiv.textContent = '✅ No console errors detected';
+            } else {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ Console Errors:\n${consoleErrors.join('\n')}`;
+            }
+        }
+
+        // Auto-run health check on load
+        document.addEventListener('DOMContentLoaded', function() {
+            testHealth();
+        });
+    </script>
+</body>
+</html>

@@ -99,6 +99,11 @@ app.get('/change-password', (req, res) => {
     }
 });
 
+// Debug page (accessible without authentication for troubleshooting)
+app.get('/debug', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'debug.html'));
+});
+
 // Authentication routes
 app.post('/api/login', async (req, res) => {
     try {

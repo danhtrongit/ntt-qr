@@ -4,3 +4,6 @@
 2025-07-31 13:59:14 +07:00: Warning: connect.session() MemoryStore is not
 2025-07-31 13:59:14 +07:00: designed for a production environment, as it will leak
 2025-07-31 13:59:14 +07:00: memory, and will not scale past a single process.
+2025-07-31 14:00:19 +07:00: Warning: connect.session() MemoryStore is not
+2025-07-31 14:00:19 +07:00: designed for a production environment, as it will leak
+2025-07-31 14:00:19 +07:00: memory, and will not scale past a single process.
