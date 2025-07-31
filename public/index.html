@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống Mã Khuyến Mãi QR</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 Hệ Thống Mã Khuyến Mãi QR</h1>
+            <p>Tạo và kiểm tra mã khuyến mãi cho khách hàng</p>
+        </header>
+
+        <main>
+            <!-- Code Generation Section -->
+            <section class="card">
+                <h2>📱 Tạo Mã Khuyến Mãi</h2>
+                <p>Nhấn nút bên dưới để tạo mã khuyến mãi mới cho khách hàng</p>
+                <button id="generateBtn" class="btn btn-primary">
+                    <span class="btn-text">Tạo Mã Khuyến Mãi</span>
+                    <span class="loading" style="display: none;">Đang tạo...</span>
+                </button>
+                
+                <div id="codeResult" class="result-section" style="display: none;">
+                    <div class="code-display">
+                        <h3>Mã khuyến mãi đã tạo:</h3>
+                        <div class="code-value" id="generatedCode"></div>
+                    </div>
+                    
+                    <div class="qr-display">
+                        <h3>QR Code cho khách hàng:</h3>
+                        <div class="qr-container">
+                            <img id="qrCodeImage" src="" alt="QR Code" />
+                        </div>
+                        <p class="qr-instruction">Khách hàng có thể quét mã QR này bằng điện thoại</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Code Validation Section -->
+            <section class="card">
+                <h2>✅ Kiểm Tra Mã Khuyến Mãi</h2>
+                <p>Nhập mã khuyến mãi của khách hàng để kiểm tra và áp dụng</p>
+                
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="codeInput" 
+                        placeholder="Nhập mã khuyến mãi (8 ký tự)"
+                        maxlength="8"
+                        autocomplete="off"
+                    />
+                    <button id="validateBtn" class="btn btn-secondary">
+                        <span class="btn-text">Kiểm Tra</span>
+                        <span class="loading" style="display: none;">Đang kiểm tra...</span>
+                    </button>
+                </div>
+                
+                <div id="validationResult" class="result-section" style="display: none;">
+                    <div class="message" id="validationMessage"></div>
+                    <div id="codeDetails" class="code-details" style="display: none;"></div>
+                </div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section class="card">
+                <h2>📊 Thống Kê</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalCodes">0</div>
+                        <div class="stat-label">Tổng mã đã tạo</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="usedCodes">0</div>
+                        <div class="stat-label">Mã đã sử dụng</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="unusedCodes">0</div>
+                        <div class="stat-label">Mã chưa sử dụng</div>
+                    </div>
+                </div>
+                <button id="refreshStatsBtn" class="btn btn-outline">Cập nhật thống kê</button>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Hệ Thống Mã Khuyến Mãi QR. Phát triển cho môi trường bán lẻ.</p>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast" style="display: none;">
+        <div class="toast-content">
+            <span class="toast-message"></span>
+            <button class="toast-close">&times;</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
