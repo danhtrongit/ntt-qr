@@ -108,7 +108,7 @@ class ValidationPage {
             
             this.isScanning = true;
             this.elements.startScanBtn.style.display = 'none';
-            this.elements.stopScanBtn.style.display = 'inline-block';
+            this.elements.stopScanBtn.classList.remove('hidden');
             this.updateScannerStatus('Đang quét... Hướng camera vào QR code', 'info');
             
         } catch (err) {
@@ -248,19 +248,33 @@ class ValidationPage {
 
     displayValidationHistory() {
         if (this.validationHistory.length === 0) {
-            this.elements.validationHistory.innerHTML = '<p style="text-align: center; color: #718096; font-style: italic;">Chưa có lịch sử kiểm tra</p>';
+            this.elements.validationHistory.innerHTML = `
+                <div class="flex items-center justify-center py-8 text-muted-foreground">
+                    <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Chưa có lịch sử kiểm tra
+                </div>
+            `;
             return;
         }
 
         const historyHTML = this.validationHistory.map(entry => {
             const timestamp = formatDate(entry.timestamp);
-            const statusClass = entry.success ? 'success' : 'error';
-            
+            const statusBadge = entry.success
+                ? '<span class="badge badge-secondary">Hợp lệ</span>'
+                : '<span class="badge badge-destructive">Không hợp lệ</span>';
+
             return `
-                <div class="history-item ${statusClass}">
-                    <div class="history-time">${timestamp}</div>
-                    <div class="history-code">${entry.code}</div>
-                    <div class="history-message">${entry.message}</div>
+                <div class="flex items-center justify-between p-3 border rounded-lg bg-card hover:bg-accent/50 transition-colors">
+                    <div class="space-y-1">
+                        <div class="font-mono font-semibold">${entry.code}</div>
+                        <div class="text-sm text-muted-foreground">${timestamp}</div>
+                        <div class="text-sm">${entry.message}</div>
+                    </div>
+                    <div class="flex flex-col items-end gap-2">
+                        ${statusBadge}
+                    </div>
                 </div>
             `;
         }).join('');

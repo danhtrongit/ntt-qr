@@ -111,8 +111,8 @@ class Dashboard {
             const data = await response.json();
 
             if (data.success) {
-                const codes = data.data;
-                const total = codes.length;
+                const codes = data.data.codes; // Extract codes array from new structure
+                const total = data.data.total; // Use total from API response
                 const used = codes.filter(code => code.is_used).length;
                 const unused = total - used;
                 const usageRate = total > 0 ? Math.round((used / total) * 100) : 0;
@@ -134,7 +134,7 @@ class Dashboard {
             const data = await response.json();
             
             if (data.success) {
-                const codes = data.data.slice(0, 10); // Get latest 10 codes
+                const codes = data.data.codes.slice(0, 10); // Get latest 10 codes from new structure
                 this.displayRecentCodes(codes);
             }
         } catch (error) {

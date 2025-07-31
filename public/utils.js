@@ -70,9 +70,9 @@ function setButtonLoading(button, loading) {
     if (btnText && loadingText) {
         if (loading) {
             btnText.style.display = 'none';
-            loadingText.style.display = 'inline';
+            loadingText.style.display = 'inline-flex';
         } else {
-            btnText.style.display = 'inline';
+            btnText.style.display = 'inline-flex';
             loadingText.style.display = 'none';
         }
     }
@@ -115,6 +115,19 @@ function formatDate(dateString) {
         minute: '2-digit',
         second: '2-digit'
     });
+}
+
+// Debounce function for search input
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
 }
 
 // Error handling wrapper
@@ -163,6 +176,7 @@ window.hideResult = hideResult;
 window.showElement = showElement;
 window.hideElement = hideElement;
 window.formatDate = formatDate;
+window.debounce = debounce;
 window.handleError = handleError;
 window.initializePage = initializePage;
 

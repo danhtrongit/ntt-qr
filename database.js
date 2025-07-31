@@ -151,11 +151,44 @@ class Database {
         });
     }
 
+    // Generic query method for flexible database operations
+    async query(sql, params = []) {
+        return new Promise((resolve, reject) => {
+            // Determine if this is a SELECT query or not
+            const isSelect = sql.trim().toLowerCase().startsWith('select');
+
+            if (isSelect) {
+                // For SELECT queries, use db.all to get all rows
+                this.db.all(sql, params, (err, rows) => {
+                    if (err) {
+                        console.error('Error executing query:', err.message);
+                        reject(err);
+                        return;
+                    }
+                    resolve(rows);
+                });
+            } else {
+                // For INSERT, UPDATE, DELETE queries, use db.run
+                this.db.run(sql, params, function(err) {
+                    if (err) {
+                        console.error('Error executing query:', err.message);
+                        reject(err);
+                        return;
+                    }
+                    resolve({
+                        lastID: this.lastID,
+                        changes: this.changes
+                    });
+                });
+            }
+        });
+    }
+
     // Get all promotional codes (for admin purposes)
     async getAllCodes() {
         return new Promise((resolve, reject) => {
             const selectSQL = `SELECT * FROM promotional_codes ORDER BY created_at DESC`;
-            
+
             this.db.all(selectSQL, [], (err, rows) => {
                 if (err) {
                     console.error('Error fetching codes:', err.message);

@@ -83,6 +83,14 @@ app.get('/dashboard', (req, res) => {
     }
 });
 
+app.get('/codes-list', (req, res) => {
+    if (req.session && req.session.admin) {
+        res.sendFile(path.join(__dirname, 'public', 'codes-list.html'));
+    } else {
+        res.redirect('/login');
+    }
+});
+
 app.get('/validate', (req, res) => {
     if (req.session && req.session.admin) {
         res.sendFile(path.join(__dirname, 'public', 'validate.html'));
@@ -310,21 +318,137 @@ app.post('/api/validate-code', requireAuth, async (req, res) => {
     }
 });
 
-// Get all promotional codes (for admin/debugging)
-app.get('/api/codes', requireAuth, async (req, res) => {
+// Generate QR code as PNG for download
+app.get('/api/generate-qr/:code', requireAuth, async (req, res) => {
     try {
-        const codes = await db.getAllCodes();
-        res.json({
-            success: true,
-            message: 'Lấy danh sách mã khuyến mãi thành công',
-            data: codes
+        const { code } = req.params;
+
+        // Generate QR code as PNG buffer
+        const qrCodeBuffer = await QRCode.toBuffer(code, {
+            type: 'png',
+            width: 300,
+            margin: 2,
+            color: {
+                dark: '#000000',
+                light: '#FFFFFF'
+            }
         });
+
+        // Set headers for PNG download
+        res.setHeader('Content-Type', 'image/png');
+        res.setHeader('Content-Disposition', `attachment; filename="qr-code-${code}.png"`);
+        res.send(qrCodeBuffer);
     } catch (error) {
-        console.error('Error fetching codes:', error);
+        console.error('Error generating QR code PNG:', error);
         res.status(500).json({
             success: false,
-            message: 'Lỗi khi lấy danh sách mã khuyến mãi',
+            message: 'Lỗi khi tạo QR code PNG',
             error: error.message
+        });
+    }
+});
+
+// Get all promotional codes with pagination and filters
+app.get('/api/codes', requireAuth, async (req, res) => {
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+        const search = req.query.search || '';
+        const status = req.query.status || '';
+        const sort = req.query.sort || 'created_desc';
+
+        const offset = (page - 1) * limit;
+
+        // Build WHERE clause
+        let whereClause = '';
+        let params = [];
+
+        if (search) {
+            whereClause += ' WHERE code LIKE ?';
+            params.push(`%${search}%`);
+        }
+
+        if (status) {
+            const statusCondition = status === 'used' ? 'is_used = 1' : 'is_used = 0';
+            whereClause += whereClause ? ` AND ${statusCondition}` : ` WHERE ${statusCondition}`;
+        }
+
+        // Build ORDER BY clause
+        let orderClause = '';
+        switch (sort) {
+            case 'created_asc':
+                orderClause = 'ORDER BY created_at ASC';
+                break;
+            case 'code_asc':
+                orderClause = 'ORDER BY code ASC';
+                break;
+            case 'code_desc':
+                orderClause = 'ORDER BY code DESC';
+                break;
+            default:
+                orderClause = 'ORDER BY created_at DESC';
+        }
+
+        // Get total count
+        const countQuery = `SELECT COUNT(*) as total FROM promotional_codes${whereClause}`;
+        const countResult = await db.query(countQuery, params);
+        const total = countResult[0].total;
+
+        // Get paginated codes
+        const codesQuery = `
+            SELECT id, code, is_used, created_at, used_at
+            FROM promotional_codes
+            ${whereClause}
+            ${orderClause}
+            LIMIT ? OFFSET ?
+        `;
+        const codes = await db.query(codesQuery, [...params, limit, offset]);
+
+        res.json({
+            success: true,
+            data: {
+                codes,
+                total,
+                page,
+                limit,
+                totalPages: Math.ceil(total / limit)
+            }
+        });
+    } catch (error) {
+        console.error('Error getting codes:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Lỗi server khi lấy danh sách mã'
+        });
+    }
+});
+
+// Delete a promotional code
+app.delete('/api/codes/:id', requireAuth, async (req, res) => {
+    try {
+        const codeId = req.params.id;
+
+        // Check if code exists
+        const existingCode = await db.query('SELECT * FROM promotional_codes WHERE id = ?', [codeId]);
+        if (existingCode.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: 'Không tìm thấy mã khuyến mãi'
+            });
+        }
+
+        // Delete the code
+        await db.query('DELETE FROM promotional_codes WHERE id = ?', [codeId]);
+
+        res.json({
+            success: true,
+            message: 'Đã xóa mã khuyến mãi thành công'
+        });
+    } catch (error) {
+        console.error('Error deleting code:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Lỗi server khi xóa mã khuyến mãi'
         });
     }
 });

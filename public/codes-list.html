@@ -3,112 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kiểm Tra Mã - Hệ Thống Mã Khuyến Mãi QR</title>
+    <title>Danh Sách Mã - Hệ Thống Mã Khuyến Mãi QR</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="shadcn-components.css">
-    <style>
-        .scanner-section {
-            background: #f7fafc;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        .scanner-toggle {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-        
-        .toggle-btn {
-            padding: 12px 24px;
-            border: 2px solid #667eea;
-            background: white;
-            color: #667eea;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .toggle-btn.active {
-            background: #667eea;
-            color: white;
-        }
-        
-        .scanner-container {
-            max-width: 400px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        #qr-reader {
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-        
-        .scanner-status {
-            margin-top: 15px;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 500;
-        }
-        
-        .scanner-status.info {
-            background: #bee3f8;
-            color: #2c5282;
-        }
-        
-        .scanner-status.error {
-            background: #fed7d7;
-            color: #742a2a;
-        }
-        
-        .manual-input-section {
-            display: none;
-        }
-        
-        .validation-history {
-            max-height: 400px;
-            overflow-y: auto;
-        }
-        
-        .history-item {
-            background: #f7fafc;
-            border-left: 4px solid #667eea;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .history-item.success {
-            border-left-color: #48bb78;
-        }
-        
-        .history-item.error {
-            border-left-color: #f56565;
-        }
-        
-        .history-time {
-            font-size: 0.9rem;
-            color: #718096;
-            margin-bottom: 5px;
-        }
-        
-        .history-code {
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-        
-        .history-message {
-            color: #4a5568;
-        }
-    </style>
 </head>
 <body>
     <!-- Modern Navigation Header -->
@@ -144,7 +41,7 @@
                                 <span>Trang Chủ</span>
                             </span>
                         </a>
-                        <a href="/codes-list" class="text-gray-600 hover:bg-gray-100 hover:text-gray-900 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">
+                        <a href="/codes-list" class="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-gray-800 hover:shadow-md">
                             <span class="flex items-center space-x-2">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
@@ -152,7 +49,7 @@
                                 <span>Danh Sách Mã</span>
                             </span>
                         </a>
-                        <a href="/validate" class="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-gray-800 hover:shadow-md">
+                        <a href="/validate" class="text-gray-600 hover:bg-gray-100 hover:text-gray-900 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">
                             <span class="flex items-center space-x-2">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -163,7 +60,7 @@
                         <a href="/change-password" class="text-gray-600 hover:bg-gray-100 hover:text-gray-900 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">
                             <span class="flex items-center space-x-2">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                                 </svg>
                                 <span>Đổi Mật Khẩu</span>
                             </span>
@@ -186,7 +83,7 @@
                                 <p class="text-xs text-gray-500" id="username">Admin</p>
                             </div>
                         </div>
-
+                        
                         <!-- Logout Button -->
                         <button id="logoutBtn" class="bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-gray-900 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-2 hover:shadow-md">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -223,7 +120,15 @@
                         <span>Trang Chủ</span>
                     </span>
                 </a>
-                <a href="/validate" class="bg-gray-900 text-white block px-3 py-2 rounded-lg text-base font-medium">
+                <a href="/codes-list" class="bg-gray-900 text-white block px-3 py-2 rounded-lg text-base font-medium">
+                    <span class="flex items-center space-x-3">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+                        </svg>
+                        <span>Danh Sách Mã</span>
+                    </span>
+                </a>
+                <a href="/validate" class="text-gray-600 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-lg text-base font-medium">
                     <span class="flex items-center space-x-3">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -234,7 +139,7 @@
                 <a href="/change-password" class="text-gray-600 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-lg text-base font-medium">
                     <span class="flex items-center space-x-3">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1721 9z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                         </svg>
                         <span>Đổi Mật Khẩu</span>
                     </span>
@@ -266,148 +171,132 @@
         </div>
     </header>
 
+    <!-- Main Content -->
     <div class="min-h-screen bg-gray-50/50">
-        <div class="max-w-4xl mx-auto p-6 space-y-8">
+        <div class="max-w-7xl mx-auto p-6 space-y-8">
             <!-- Page Header -->
-            <div class="space-y-2">
-                <h1 class="text-3xl font-bold tracking-tight">Kiểm tra mã khuyến mãi</h1>
-                <p class="text-muted-foreground">
-                    Quét QR code hoặc nhập mã thủ công để xác thực
-                </p>
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+                <div class="space-y-2">
+                    <h1 class="text-3xl font-bold tracking-tight">Danh sách mã khuyến mãi</h1>
+                    <p class="text-muted-foreground">
+                        Quản lý tất cả mã khuyến mãi đã tạo trong hệ thống
+                    </p>
+                </div>
+                <div class="flex gap-3">
+                    <button id="refreshBtn" class="btn btn-outline">
+                        <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                        </svg>
+                        Làm mới
+                    </button>
+                    <a href="/dashboard" class="btn btn-default">
+                        <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                        </svg>
+                        Tạo mã mới
+                    </a>
+                </div>
             </div>
 
-            <!-- Scanner/Input Section -->
+            <!-- Filters and Search -->
             <div class="card">
-                <div class="card-header">
-                    <div class="card-title">Phương thức kiểm tra</div>
-                    <div class="card-description">
-                        Chọn cách thức kiểm tra mã khuyến mãi phù hợp
-                    </div>
-                </div>
-                <div class="card-content space-y-6">
-                    <!-- Toggle Buttons -->
-                    <div class="flex gap-2">
-                        <button class="btn btn-default flex-1" id="scannerToggle">
-                            <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V6a1 1 0 00-1-1H5a1 1 0 00-1 1v1a1 1 0 001 1zm12 0h2a1 1 0 001-1V6a1 1 0 00-1-1h-2a1 1 0 00-1 1v1a1 1 0 001 1zM5 20h2a1 1 0 001-1v-1a1 1 0 00-1-1H5a1 1 0 00-1 1v1a1 1 0 001 1z"/>
-                            </svg>
-                            Quét QR Code
-                        </button>
-                        <button class="btn btn-outline flex-1" id="manualToggle">
-                            <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                            </svg>
-                            Nhập thủ công
-                        </button>
-                    </div>
-
-                    <!-- QR Scanner Section -->
-                    <div id="scannerSection" class="space-y-4">
-                        <div class="flex justify-center">
-                            <div class="w-full max-w-md">
-                                <div id="qr-reader" class="rounded-lg overflow-hidden border"></div>
-                            </div>
+                <div class="card-content">
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <div class="flex-1">
+                            <input 
+                                type="text" 
+                                id="searchInput" 
+                                class="input" 
+                                placeholder="Tìm kiếm mã khuyến mãi..."
+                            />
                         </div>
-
-                        <div id="scannerStatus" class="alert alert-default">
-                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                            <div>Nhấn "Bắt đầu quét" để kích hoạt camera</div>
-                        </div>
-
-                        <div class="flex gap-2 justify-center">
-                            <button id="startScanBtn" class="btn btn-default">
-                                <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M19 10a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                                Bắt đầu quét
-                            </button>
-                            <button id="stopScanBtn" class="btn btn-destructive hidden">
-                                <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 9l6 6m0-6l-6 6"/>
-                                </svg>
-                                Dừng quét
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Manual Input Section -->
-                    <div id="manualSection" class="hidden space-y-4">
-                        <div class="space-y-2">
-                            <label for="codeInput" class="label">Mã khuyến mãi</label>
-                            <div class="flex gap-2">
-                                <input
-                                    type="text"
-                                    id="codeInput"
-                                    class="input flex-1 font-mono uppercase"
-                                    placeholder="Nhập mã 8 ký tự"
-                                    maxlength="8"
-                                    autocomplete="off"
-                                />
-                                <button id="validateBtn" class="btn btn-default">
-                                    <span class="btn-text">Kiểm tra</span>
-                                    <span class="loading hidden flex items-center gap-2">
-                                        <svg class="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
-                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                        </svg>
-                                        Đang kiểm tra...
-                                    </span>
-                                </button>
-                            </div>
+                        <div class="flex gap-2">
+                            <select id="statusFilter" class="input w-auto">
+                                <option value="">Tất cả trạng thái</option>
+                                <option value="unused">Chưa sử dụng</option>
+                                <option value="used">Đã sử dụng</option>
+                            </select>
+                            <select id="sortBy" class="input w-auto">
+                                <option value="created_desc">Mới nhất</option>
+                                <option value="created_asc">Cũ nhất</option>
+                                <option value="code_asc">Mã A-Z</option>
+                                <option value="code_desc">Mã Z-A</option>
+                            </select>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="grid gap-6 lg:grid-cols-2">
-                <!-- Validation Result -->
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Kết quả kiểm tra</div>
-                        <div class="card-description">
-                            Thông tin chi tiết về mã khuyến mãi
+            <!-- Codes Table -->
+            <div class="card">
+                <div class="card-content p-0">
+                    <!-- Loading State -->
+                    <div id="loadingState" class="flex items-center justify-center py-12">
+                        <svg class="animate-spin h-8 w-8 text-muted-foreground mr-3" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span class="text-muted-foreground">Đang tải danh sách mã...</span>
+                    </div>
+
+                    <!-- Table -->
+                    <div id="tableContainer" class="hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead class="border-b bg-muted/50">
+                                    <tr>
+                                        <th class="text-left p-4 font-medium text-muted-foreground">Mã</th>
+                                        <th class="text-left p-4 font-medium text-muted-foreground">Trạng thái</th>
+                                        <th class="text-left p-4 font-medium text-muted-foreground">Ngày tạo</th>
+                                        <th class="text-left p-4 font-medium text-muted-foreground">Ngày sử dụng</th>
+                                        <th class="text-right p-4 font-medium text-muted-foreground">Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="codesTableBody">
+                                    <!-- Table rows will be inserted here -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <div class="card-content">
-                        <div id="validationResult" class="hidden space-y-4 animate-fade-in">
-                            <div id="validationMessage" class="alert"></div>
-                            <div id="codeDetails" class="hidden space-y-3 p-4 bg-muted/50 rounded-lg"></div>
-                        </div>
-                        <div id="noResult" class="flex items-center justify-center py-8 text-muted-foreground">
-                            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+
+                    <!-- Empty State -->
+                    <div id="emptyState" class="hidden flex flex-col items-center justify-center py-12 text-center">
+                        <svg class="h-12 w-12 text-muted-foreground mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
+                        </svg>
+                        <h3 class="text-lg font-medium text-gray-900 mb-2">Không có mã khuyến mãi</h3>
+                        <p class="text-muted-foreground mb-4">Chưa có mã khuyến mãi nào được tạo hoặc không tìm thấy kết quả phù hợp.</p>
+                        <a href="/dashboard" class="btn btn-default">
+                            <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                             </svg>
-                            Chưa có kết quả kiểm tra nào
-                        </div>
+                            Tạo mã đầu tiên
+                        </a>
                     </div>
                 </div>
+            </div>
 
-                <!-- Validation History -->
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Lịch sử kiểm tra</div>
-                        <div class="card-description">
-                            Các lần kiểm tra mã gần đây
-                        </div>
+            <!-- Pagination -->
+            <div id="paginationContainer" class="hidden">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="text-sm text-muted-foreground">
+                        Hiển thị <span id="showingFrom">1</span> đến <span id="showingTo">10</span> trong tổng số <span id="totalCodes">0</span> mã
                     </div>
-                    <div class="card-content">
-                        <div id="validationHistory" class="space-y-3 max-h-96 overflow-y-auto">
-                            <div class="flex items-center justify-center py-8 text-muted-foreground">
-                                <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                                Chưa có lịch sử kiểm tra
-                            </div>
-                        </div>
-                        <div class="separator my-4"></div>
-                        <button id="clearHistoryBtn" class="btn btn-outline w-full">
-                            <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                    <div class="flex items-center gap-2">
+                        <button id="prevPageBtn" class="btn btn-outline btn-sm" disabled>
+                            <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                             </svg>
-                            Xóa lịch sử
+                            Trước
+                        </button>
+                        <div id="pageNumbers" class="flex gap-1">
+                            <!-- Page numbers will be inserted here -->
+                        </div>
+                        <button id="nextPageBtn" class="btn btn-outline btn-sm" disabled>
+                            Sau
+                            <svg class="h-4 w-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
                         </button>
                     </div>
                 </div>
@@ -415,20 +304,42 @@
         </div>
     </div>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="toast" style="display: none;">
-        <div class="toast-content">
-            <span class="toast-message"></span>
-            <button class="toast-close">&times;</button>
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+            <div class="flex items-center mb-4">
+                <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3">
+                    <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-medium text-gray-900">Xác nhận xóa mã</h3>
+            </div>
+            <p class="text-gray-600 mb-6">
+                Bạn có chắc chắn muốn xóa mã <span id="deleteCodeText" class="font-mono font-bold"></span>? 
+                Hành động này không thể hoàn tác.
+            </p>
+            <div class="flex gap-3 justify-end">
+                <button id="cancelDeleteBtn" class="btn btn-outline">Hủy</button>
+                <button id="confirmDeleteBtn" class="btn btn-destructive">
+                    <span class="delete-text">Xóa mã</span>
+                    <span class="delete-loading hidden flex items-center">
+                        <svg class="animate-spin h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Đang xóa...
+                    </span>
+                </button>
+            </div>
         </div>
     </div>
 
-    <!-- QR Code Scanner Library -->
-    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <!-- Scripts -->
     <script src="utils.js"></script>
     <script src="auth.js"></script>
-    <script src="validate.js"></script>
-
+    <script src="codes-list.js"></script>
+    
     <!-- Mobile Menu Script -->
     <script>
         // Mobile menu toggle
@@ -437,11 +348,11 @@
             const mobileMenu = document.querySelector('.mobile-menu');
             const menuIcon = document.querySelector('.menu-icon');
             const closeIcon = document.querySelector('.close-icon');
-
+            
             if (mobileMenuButton && mobileMenu) {
                 mobileMenuButton.addEventListener('click', function() {
                     const isOpen = !mobileMenu.classList.contains('hidden');
-
+                    
                     if (isOpen) {
                         mobileMenu.classList.add('hidden');
                         menuIcon.classList.remove('hidden');
@@ -455,7 +366,7 @@
                     }
                 });
             }
-
+            
             // Handle mobile logout button
             const logoutBtnMobile = document.getElementById('logoutBtn-mobile');
             if (logoutBtnMobile) {

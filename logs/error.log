@@ -16,3 +16,175 @@
 2025-07-31 14:26:36 +07:00: Warning: connect.session() MemoryStore is not
 2025-07-31 14:26:36 +07:00: designed for a production environment, as it will leak
 2025-07-31 14:26:36 +07:00: memory, and will not scale past a single process.
+2025-07-31 14:31:47 +07:00: Warning: connect.session() MemoryStore is not
+2025-07-31 14:31:47 +07:00: designed for a production environment, as it will leak
+2025-07-31 14:31:47 +07:00: memory, and will not scale past a single process.
+2025-07-31 14:39:55 +07:00: Warning: connect.session() MemoryStore is not
+2025-07-31 14:39:55 +07:00: designed for a production environment, as it will leak
+2025-07-31 14:39:55 +07:00: memory, and will not scale past a single process.
+2025-07-31 14:41:01 +07:00: Error getting codes: TypeError: db.query is not a function
+2025-07-31 14:41:01 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/server.js:364:38
+2025-07-31 14:41:01 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:41:01 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:41:01 +07:00:     at requireAuth (/Users/danhtrongtran/Documents/projects/qr/server.js:38:16)
+2025-07-31 14:41:01 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:41:01 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:41:01 +07:00:     at Route.dispatch (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:117:3)
+2025-07-31 14:41:01 +07:00:     at handle (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:435:11)
+2025-07-31 14:41:01 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:41:01 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:295:15
+2025-07-31 14:41:01 +07:00: Error getting codes: TypeError: db.query is not a function
+2025-07-31 14:41:01 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/server.js:364:38
+2025-07-31 14:41:01 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:41:01 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:41:01 +07:00:     at requireAuth (/Users/danhtrongtran/Documents/projects/qr/server.js:38:16)
+2025-07-31 14:41:01 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:41:01 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:41:01 +07:00:     at Route.dispatch (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:117:3)
+2025-07-31 14:41:01 +07:00:     at handle (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:435:11)
+2025-07-31 14:41:01 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:41:01 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:295:15
+2025-07-31 14:41:04 +07:00: Error getting codes: TypeError: db.query is not a function
+2025-07-31 14:41:04 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/server.js:364:38
+2025-07-31 14:41:04 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:41:04 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:41:04 +07:00:     at requireAuth (/Users/danhtrongtran/Documents/projects/qr/server.js:38:16)
+2025-07-31 14:41:04 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:41:04 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:41:04 +07:00:     at Route.dispatch (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:117:3)
+2025-07-31 14:41:04 +07:00:     at handle (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:435:11)
+2025-07-31 14:41:04 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:41:04 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:295:15
+2025-07-31 14:41:04 +07:00: Error getting codes: TypeError: db.query is not a function
+2025-07-31 14:41:04 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/server.js:364:38
+2025-07-31 14:41:04 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:41:04 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:41:04 +07:00:     at requireAuth (/Users/danhtrongtran/Documents/projects/qr/server.js:38:16)
+2025-07-31 14:41:04 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:41:04 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:41:04 +07:00:     at Route.dispatch (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:117:3)
+2025-07-31 14:41:04 +07:00:     at handle (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:435:11)
+2025-07-31 14:41:04 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:41:04 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:295:15
+2025-07-31 14:41:12 +07:00: Error getting codes: TypeError: db.query is not a function
+2025-07-31 14:41:12 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/server.js:364:38
+2025-07-31 14:41:12 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:41:12 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:41:12 +07:00:     at requireAuth (/Users/danhtrongtran/Documents/projects/qr/server.js:38:16)
+2025-07-31 14:41:12 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:41:12 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:41:12 +07:00:     at Route.dispatch (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:117:3)
+2025-07-31 14:41:12 +07:00:     at handle (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:435:11)
+2025-07-31 14:41:12 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:41:12 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:295:15
+2025-07-31 14:41:12 +07:00: Error getting codes: TypeError: db.query is not a function
+2025-07-31 14:41:12 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/server.js:364:38
+2025-07-31 14:41:12 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:41:12 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:41:12 +07:00:     at requireAuth (/Users/danhtrongtran/Documents/projects/qr/server.js:38:16)
+2025-07-31 14:41:12 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:41:12 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:41:12 +07:00:     at Route.dispatch (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:117:3)
+2025-07-31 14:41:12 +07:00:     at handle (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:435:11)
+2025-07-31 14:41:12 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:41:12 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:295:15
+2025-07-31 14:42:55 +07:00: Error getting codes: TypeError: db.query is not a function
+2025-07-31 14:42:55 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/server.js:364:38
+2025-07-31 14:42:55 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:42:55 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:42:55 +07:00:     at requireAuth (/Users/danhtrongtran/Documents/projects/qr/server.js:38:16)
+2025-07-31 14:42:55 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:42:55 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:42:55 +07:00:     at Route.dispatch (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:117:3)
+2025-07-31 14:42:55 +07:00:     at handle (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:435:11)
+2025-07-31 14:42:55 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:42:55 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:295:15
+2025-07-31 14:42:55 +07:00: Error getting codes: TypeError: db.query is not a function
+2025-07-31 14:42:55 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/server.js:364:38
+2025-07-31 14:42:55 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:42:55 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:42:55 +07:00:     at requireAuth (/Users/danhtrongtran/Documents/projects/qr/server.js:38:16)
+2025-07-31 14:42:55 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:42:55 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:42:55 +07:00:     at Route.dispatch (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:117:3)
+2025-07-31 14:42:55 +07:00:     at handle (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:435:11)
+2025-07-31 14:42:55 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:42:55 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:295:15
+2025-07-31 14:43:00 +07:00: Error getting codes: TypeError: db.query is not a function
+2025-07-31 14:43:00 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/server.js:364:38
+2025-07-31 14:43:00 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:43:00 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:43:00 +07:00:     at requireAuth (/Users/danhtrongtran/Documents/projects/qr/server.js:38:16)
+2025-07-31 14:43:00 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:43:00 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:43:00 +07:00:     at Route.dispatch (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:117:3)
+2025-07-31 14:43:00 +07:00:     at handle (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:435:11)
+2025-07-31 14:43:00 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:43:00 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:295:15
+2025-07-31 14:43:00 +07:00: Error getting codes: TypeError: db.query is not a function
+2025-07-31 14:43:00 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/server.js:364:38
+2025-07-31 14:43:00 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:43:00 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:43:00 +07:00:     at requireAuth (/Users/danhtrongtran/Documents/projects/qr/server.js:38:16)
+2025-07-31 14:43:00 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:43:00 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:43:00 +07:00:     at Route.dispatch (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:117:3)
+2025-07-31 14:43:00 +07:00:     at handle (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:435:11)
+2025-07-31 14:43:00 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:43:00 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:295:15
+2025-07-31 14:43:30 +07:00: Warning: connect.session() MemoryStore is not
+2025-07-31 14:43:30 +07:00: designed for a production environment, as it will leak
+2025-07-31 14:43:30 +07:00: memory, and will not scale past a single process.
+2025-07-31 14:43:37 +07:00: Error getting codes: TypeError: db.query is not a function
+2025-07-31 14:43:37 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/server.js:364:38
+2025-07-31 14:43:37 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:43:37 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:43:37 +07:00:     at requireAuth (/Users/danhtrongtran/Documents/projects/qr/server.js:38:16)
+2025-07-31 14:43:37 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:43:37 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:43:37 +07:00:     at Route.dispatch (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:117:3)
+2025-07-31 14:43:37 +07:00:     at handle (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:435:11)
+2025-07-31 14:43:37 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:43:37 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:295:15
+2025-07-31 14:43:37 +07:00: Error getting codes: TypeError: db.query is not a function
+2025-07-31 14:43:37 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/server.js:364:38
+2025-07-31 14:43:37 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:43:37 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:43:37 +07:00:     at requireAuth (/Users/danhtrongtran/Documents/projects/qr/server.js:38:16)
+2025-07-31 14:43:37 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:43:37 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:43:37 +07:00:     at Route.dispatch (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:117:3)
+2025-07-31 14:43:37 +07:00:     at handle (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:435:11)
+2025-07-31 14:43:37 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:43:37 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:295:15
+2025-07-31 14:43:46 +07:00: Error getting codes: TypeError: db.query is not a function
+2025-07-31 14:43:46 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/server.js:364:38
+2025-07-31 14:43:46 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:43:46 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:43:46 +07:00:     at requireAuth (/Users/danhtrongtran/Documents/projects/qr/server.js:38:16)
+2025-07-31 14:43:46 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:43:46 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:43:46 +07:00:     at Route.dispatch (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:117:3)
+2025-07-31 14:43:46 +07:00:     at handle (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:435:11)
+2025-07-31 14:43:46 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:43:46 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:295:15
+2025-07-31 14:43:46 +07:00: Error getting codes: TypeError: db.query is not a function
+2025-07-31 14:43:46 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/server.js:364:38
+2025-07-31 14:43:46 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:43:46 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:43:46 +07:00:     at requireAuth (/Users/danhtrongtran/Documents/projects/qr/server.js:38:16)
+2025-07-31 14:43:46 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:43:46 +07:00:     at next (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:157:13)
+2025-07-31 14:43:46 +07:00:     at Route.dispatch (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/route.js:117:3)
+2025-07-31 14:43:46 +07:00:     at handle (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:435:11)
+2025-07-31 14:43:46 +07:00:     at Layer.handleRequest (/Users/danhtrongtran/Documents/projects/qr/node_modules/router/lib/layer.js:152:17)
+2025-07-31 14:43:46 +07:00:     at /Users/danhtrongtran/Documents/projects/qr/node_modules/router/index.js:295:15
+2025-07-31 14:44:01 +07:00: Warning: connect.session() MemoryStore is not
+2025-07-31 14:44:01 +07:00: designed for a production environment, as it will leak
+2025-07-31 14:44:01 +07:00: memory, and will not scale past a single process.
+2025-07-31 14:48:34 +07:00: Warning: connect.session() MemoryStore is not
+2025-07-31 14:48:34 +07:00: designed for a production environment, as it will leak
+2025-07-31 14:48:34 +07:00: memory, and will not scale past a single process.
+2025-07-31 14:50:03 +07:00: Warning: connect.session() MemoryStore is not
+2025-07-31 14:50:03 +07:00: designed for a production environment, as it will leak
+2025-07-31 14:50:03 +07:00: memory, and will not scale past a single process.

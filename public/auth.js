@@ -141,9 +141,9 @@ function setButtonLoading(button, loading) {
     if (btnText && loadingText) {
         if (loading) {
             btnText.style.display = 'none';
-            loadingText.style.display = 'inline';
+            loadingText.style.display = 'inline-flex';
         } else {
-            btnText.style.display = 'inline';
+            btnText.style.display = 'inline-flex';
             loadingText.style.display = 'none';
         }
     }
